@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -13,7 +12,7 @@ namespace Ex2Attributes
 
             var obsoleteClasses = assembly?.GetTypes().Where(x => x.GetCustomAttributes<ObsoleteAttribute>().Any());
 
-            if (obsoleteClasses == null) return;
+            if (obsoleteClasses is null) return;
 
             foreach (var obsoleteClass in obsoleteClasses)
             {
