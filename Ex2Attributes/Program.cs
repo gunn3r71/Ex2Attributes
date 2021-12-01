@@ -10,14 +10,17 @@ namespace Ex2Attributes
         static void Main(string[] args)
         {
             var assembly = Assembly.GetAssembly(typeof(object));
+
             var obsoleteClasses = assembly?.GetTypes().Where(x => x.GetCustomAttributes<ObsoleteAttribute>().Any());
+
+            if (obsoleteClasses == null) return;
 
             foreach (var obsoleteClass in obsoleteClasses)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
 
                 Console.WriteLine($"Class: {obsoleteClass.Name}");
-                
+
                 Console.ForegroundColor = default;
 
                 foreach (var method in obsoleteClass.GetMethods())
